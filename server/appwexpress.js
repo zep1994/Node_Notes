@@ -6,35 +6,23 @@ const greetMiddleWare = require('./greet.js')
 const app = express()
 
 //Define port number as 3000
-const port = 3000
+const PORT = 3000
+const HOST = '127.0.0.1'
 
-
-//Create Greeting Class
-class GreetingService {
-  constructor(greeting = 'Hello') {
-    this.greeting = greeting
-  }
-
-  //create greeting call
-  createGreeting(name) {
-    return `${this.greeting}, ${name}`
-  }
-}
-
-express()
-  .use('/api/v1/service1', greetMiddleWare({
-    service: new GreetingService('Hello'),
-  }))
-  .use('/api/v1/service2', greetMiddleWare({
-    service: new GreetingService('Hi')
-  })).listen(8000)
+//Set Templating Engine
+app.set('view engine', 'ejs')
+app.set('views', 'src/views')
 
 //Routes the HTTP GET requests to specified path '/' with the specified callback function
 app.get('/', (req, res, next) => {
-  res.send('Hello World')
+  res.render('index')
 })
 
 //Make it listen on port 3000
-app.listen(port, function() {
-  console.log(`Server is listening on localhost:${port}`)
+app.listen(PORT, function(err) {
+  if (!err) {
+      console.log(`Server is listening on localhost:${PORT}`)
+  } else {
+    console.log(JSON.stringify(err))
+  }
 })
