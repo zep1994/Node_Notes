@@ -2,13 +2,19 @@
   "name": "node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "starte": "nodemon server/appwexpress.js",
+    "start": "nodemon server/app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-inspect": "^1.11.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
