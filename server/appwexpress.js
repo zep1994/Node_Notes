@@ -14,8 +14,13 @@ app.set('view engine', 'ejs')
 app.set('views', 'src/views')
 
 //Setup to use STATIC FILES
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
+
+//make use of cors
+app.use(cors())
+
+//INDEX ROUTE
 app.get('/', (req, res, next) => {
   let info = {
     'string_value': 'Stack Overflow',
@@ -23,6 +28,11 @@ app.get('/', (req, res, next) => {
   }
   res.json(info)
 })
+
+//The 404 ROUTE
+app.get('*', function(req, res){
+  res.render('error', {message: 'Page not found'});
+});
 
 //Make it listen on port 3000
 app.listen(PORT, function(err) {
