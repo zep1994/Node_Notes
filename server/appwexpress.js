@@ -15,7 +15,10 @@ app.set('views', 'src/views')
 
 //Routes the HTTP GET requests to specified path '/' with the specified callback function
 app.get('/', (req, res, next) => {
-  res.render('index')
+  res.render('index', {title: "Title",
+                       supplies: [
+                         1,2,4,5,6,434,24,435,435,43,45
+                       ]})
 })
 
 //Make it listen on port 3000
